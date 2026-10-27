@@ -14,6 +14,11 @@
   box-sizing: border-box;
 }
 
+/* hidden을 붙인 것은 항상 숨긴다 */
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -520,6 +525,22 @@ a.card-link {
   margin-top: 2px;
   overflow-wrap: anywhere;
   white-space: pre-line;
+}
+
+/* 맨 아래 작은 관리자 링크 */
+.admin-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.admin-link a {
+  color: #9aa1ad;
+  text-decoration: none;
+}
+
+.admin-link a:hover {
+  color: var(--blue);
 }
 
 /* ===== 화면 폭에 따라 ===== */
