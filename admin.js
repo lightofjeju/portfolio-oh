@@ -89,8 +89,9 @@ async function auth(path, body) {
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    const error = new Error(data.error_description || data.msg || "로그인 실패");
+    const error = new Error(data.msg || data.error_description || data.message || "로그인 실패");
     error.status = res.status;
+    error.code = data.error_code || data.code || data.error || "";
     throw error;
   }
   return data;

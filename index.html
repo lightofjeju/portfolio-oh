@@ -112,6 +112,24 @@
       </div>
     </section>
 
+    <!-- 메일 보내기 (Web3Forms) -->
+    <section class="sheet guestbook">
+      <h2 class="big-title small">CONTACT</h2>
+      <p class="intro mail-guide">궁금한 점이나 제안을 남겨 주시면 메일로 받아 보고 답장드릴게요.</p>
+
+      <form class="mail-form" id="mail-form">
+        <div class="mail-row">
+          <input class="gb-input" id="mail-name" type="text" placeholder="이름" maxlength="50" autocomplete="name" required>
+          <input class="gb-input" id="mail-email" type="email" placeholder="답장 받을 이메일" maxlength="100" autocomplete="email" required>
+        </div>
+        <textarea class="gb-input mail-message" id="mail-message" placeholder="보낼 내용" maxlength="2000" required></textarea>
+        <!-- 스팸 로봇만 채우는 칸 (사람에게는 안 보임) -->
+        <input type="checkbox" id="mail-botcheck" class="mail-botcheck" tabindex="-1" autocomplete="off">
+        <button class="gb-button mail-button" id="mail-button" type="button">메일 보내기</button>
+      </form>
+      <p class="gb-status" id="mail-status"></p>
+    </section>
+
     <!-- 방명록 -->
     <section class="sheet guestbook">
       <h2 class="big-title small">GUESTBOOK</h2>

@@ -527,6 +527,40 @@ a.card-link {
   white-space: pre-line;
 }
 
+/* ===== 메일 보내기 ===== */
+.mail-guide {
+  margin: -6px 0 18px;
+}
+
+.mail-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mail-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mail-row .gb-input {
+  flex: 1;
+}
+
+.mail-message {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.mail-button {
+  align-self: flex-end;
+  padding: 12px 26px;
+}
+
+.mail-botcheck {
+  display: none;
+}
+
 /* 맨 아래 작은 관리자 링크 */
 .admin-link {
   text-align: center;
@@ -602,6 +636,14 @@ a.card-link {
 
   .gb-nick {
     width: 100%;
+  }
+
+  .mail-row {
+    flex-direction: column;
+  }
+
+  .mail-button {
+    align-self: stretch;
   }
 
   .gb-button {

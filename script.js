@@ -340,6 +340,65 @@ document.getElementById("gb-msg").addEventListener("keydown", (e) => {
   }
 });
 
+// ===== 메일 보내기 (Web3Forms) =====
+// Web3Forms 접근 키: 이 키로 보낸 글은 키를 만들 때 적은 메일로 간다 (공개해도 되는 키)
+const WEB3FORMS_KEY = "";
+
+async function sendMail() {
+  const nameInput = document.getElementById("mail-name");
+  const emailInput = document.getElementById("mail-email");
+  const messageInput = document.getElementById("mail-message");
+  const button = document.getElementById("mail-button");
+  const status = document.getElementById("mail-status");
+
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+  if (!name || !email || !message) {
+    status.textContent = "이름, 이메일, 내용을 모두 적어 주세요.";
+    return;
+  }
+  if (!emailInput.checkValidity()) {
+    status.textContent = "이메일 주소를 다시 확인해 주세요.";
+    return;
+  }
+  if (!WEB3FORMS_KEY) {
+    status.textContent = "메일 보내기는 아직 준비 중이에요.";
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "보내는 중…";
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: "[포트폴리오] " + name + "님의 메일",
+        from_name: "포트폴리오 홈페이지",
+        name,
+        email,
+        message,
+        botcheck: document.getElementById("mail-botcheck").checked,
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) throw new Error(data.message || "보내기 실패");
+    messageInput.value = "";
+    status.textContent = "보냈어요. 고맙습니다!";
+  } catch (e) {
+    status.textContent = "보내지 못했어요. 잠시 후 다시 해 주세요.";
+  }
+  button.disabled = false;
+}
+
+document.getElementById("mail-button").addEventListener("click", sendMail);
+document.getElementById("mail-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  sendMail();
+});
+
 // ===== 시작 =====
 loadProfile();
 loadProjects();
