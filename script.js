@@ -342,7 +342,7 @@ document.getElementById("gb-msg").addEventListener("keydown", (e) => {
 
 // ===== 메일 보내기 (Web3Forms) =====
 // Web3Forms 접근 키: 이 키로 보낸 글은 키를 만들 때 적은 메일로 간다 (공개해도 되는 키)
-const WEB3FORMS_KEY = "";
+const WEB3FORMS_KEY = "6128daa8-10bc-47fa-b29b-502292146ae7";
 
 async function sendMail() {
   const nameInput = document.getElementById("mail-name");
